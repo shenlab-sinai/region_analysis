@@ -13,7 +13,7 @@ def main():
     opt_parser = OptionParser()
     opt_parser.add_option('-i', '--input', action='store',
                           dest='input_file_name',
-                          help='Input region file must assume the first 3 columns contain (chr, start, end)', default='')
+                          help='Input region file must assume the first 3 columns contain (chr, start, end)')
     opt_parser.add_option('-d', '--database', action='store',
                           dest='anno_db', help='Choose database: refseq(default) or ensembl',
                           default='refseq')
@@ -22,19 +22,25 @@ def main():
     opt_parser.add_option('-g', '--genome', action='store',
                           dest='genome', help='Choose genome: mm10(default)',
                           default='mm10')
-    (options, args) = opt_parser.parse_args(sys.argv)
-
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    db_path = os.path.join(script_dir, "database/")
-    input_file_name = options.input_file_name
-    anno_db = options.anno_db
-    rhead = options.rhead
-    genome = options.genome
+    try:    
+        (options, args) = opt_parser.parse_args(sys.argv)
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        db_path = os.path.join(script_dir, "database/")
+        input_file_name = options.input_file_name
+        anno_db = options.anno_db
+        rhead = options.rhead
+        genome = options.genome
+        if (input_file_name is None) or (len(input_file_name)==0):
+            raise SystemExit
+    except SystemExit:
+        print("Please assign proper input file!")
+        opt_parser.print_help()
+        return 1
 
     # create a tmp bed file with index column
     in_f = file(input_file_name)
-    input_indexed = ['%s\t%d\n' % (line.strip(), i)
-                     for i, line in enumerate(in_f)]
+    input_filtered = [ line  for line in in_f  if not line.startswith("#") ] # filter the comment lines
+    input_indexed = [ '%s\t%d\n' % (line.strip(), i) for i, line in enumerate(input_filtered) ] # add index column to the bed lines
     in_f.close()
 
     # read all annotations into a dictionary, for the further output.
