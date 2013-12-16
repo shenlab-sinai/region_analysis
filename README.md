@@ -5,7 +5,7 @@ Dependency:
 
   bedtools: [https://code.google.com/p/bedtools/](https://code.google.com/p/bedtools/)
 
-  pybedtools: [https://code.google.com/p/bedtools/](https://code.google.com/p/bedtools/)
+  pybedtools: [https://github.com/daler/pybedtools](https://github.com/daler/pybedtools)
 
     If easy_install or pip is available, then:
 
