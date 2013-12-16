@@ -2,11 +2,17 @@ region_analysis
 ===============
 
 Dependency:
+
   bedtools: [https://code.google.com/p/bedtools/](https://code.google.com/p/bedtools/)
+
   pybedtools: [https://code.google.com/p/bedtools/](https://code.google.com/p/bedtools/)
+
     If easy_install or pip is available, then:
+
       easy_install pybedtools
+
       or:
+
       pip isntall pybedtools
 
 Usage: region_analysis.py [options]
@@ -56,5 +62,7 @@ Output:
   OtherIntergenic: 	Any region that does not belong to the above categories.
 
 Testing with examples:
+
 ./region_analysis.py -i example/test_without_header.bed -g mm10 -d ensembl
+
 ./region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r
