@@ -40,6 +40,10 @@ def main():
     # create a tmp bed file with index column
     in_f = file(input_file_name)
     input_filtered = [ line  for line in in_f  if not line.startswith("#") ] # filter the comment lines
+    # if there is header, store it and remove it from the query BED.
+    if rhead == True:
+        headlineL = input_filtered[0].strip().split("\t")
+        del input_filtered[0]
     input_indexed = [ '%s\t%d\n' % (line.strip(), i) for i, line in enumerate(input_filtered) ] # add index column to the bed lines
     in_f.close()
 
@@ -61,9 +65,6 @@ def main():
         os.path.join(db_path, genome + "_subtelomere.bed")).saveas()
 
     # load the input intervals to be annotated
-    if rhead == True:
-        headlineL = input_indexed[0].strip().split("\t")[:-1]
-        del input_indexed[0]
     input_bed = pybedtools.BedTool(
         "".join(input_indexed), from_string=True).saveas()
     list_input = [x.fields[:] for x in input_bed]
@@ -173,12 +174,9 @@ def main():
             headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype"]) + "\n")
         output_file_best.write("\t".join(
             headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype"]) + "\n")
-        start_idx = 1
-    else:
-        start_idx = 0
     # write to the output: input.bed.annotated, input.bed.full.annotated
     json_dict = {}
-    for i in range(start_idx, len(input_bed)):
+    for i in range(0, len(input_bed)):
         output_lineL = list_input[i][:-1]  # original input line
         json_dict[str(i)] = {}
         json_dict[str(i)]["query_interval"] = output_lineL
