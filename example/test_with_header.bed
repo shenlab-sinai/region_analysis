@@ -1,5 +1,5 @@
-# example bed
-# ./region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r
+       # example bed
+	# ./region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r
 # ./region_analysis.py -i example/test_with_header.bed -g mm10 -d refseq -r
 Chrom	Start	End
 chr1	3000100	3000200
