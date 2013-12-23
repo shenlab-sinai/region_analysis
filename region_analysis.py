@@ -39,7 +39,7 @@ def main():
 
     # create a tmp bed file with index column
     in_f = file(input_file_name)
-    input_filtered = [ line  for line in in_f  if not line.startswith("#") ] # filter the comment lines
+    input_filtered = [ line  for line in in_f  if not line.lstrip().startswith("#") ] # filter the comment lines
     # if there is header, store it and remove it from the query BED.
     if rhead == True:
         headlineL = input_filtered[0].strip().split("\t")
