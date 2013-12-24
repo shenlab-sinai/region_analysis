@@ -63,6 +63,6 @@ Output:
 
 Testing with examples:
 
-./region_analysis.py -i example/test_without_header.bed -g mm10 -d ensembl
+region_analysis.py -i example/test_without_header.bed -g mm10 -d ensembl
 
-./region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r
+region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r

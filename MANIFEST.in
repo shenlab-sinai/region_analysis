@@ -1,0 +1,7 @@
+include README.rst
+include regionanalysis/database/*
+include regionanalysis/example/*.bed
+include regionanalysis/example/*.out
+exclude build/*
+exclude dist/*
+exclude regionanalysis.egg-info/*
