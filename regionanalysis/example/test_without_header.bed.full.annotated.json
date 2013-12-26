@@ -2,22 +2,22 @@
   "0": {
     "all_hits": [
       [
-        "", 
-        "", 
-        "", 
-        "", 
-        "", 
+        "NA", 
+        "NA", 
+        ".", 
+        "NA", 
+        "NA", 
         "Pericentromere", 
         "NA", 
         "No_anno"
       ]
     ], 
     "best_hit": [
-      "", 
-      "", 
-      "", 
-      "", 
-      "", 
+      "NA", 
+      "NA", 
+      ".", 
+      "NA", 
+      "NA", 
       "Pericentromere", 
       "NA", 
       "No_anno"
@@ -31,22 +31,22 @@
   "1": {
     "all_hits": [
       [
-        "", 
-        "", 
-        "", 
-        "", 
-        "", 
+        "NA", 
+        "NA", 
+        ".", 
+        "NA", 
+        "NA", 
         "Subtelomere", 
         "NA", 
         "No_anno"
       ]
     ], 
     "best_hit": [
-      "", 
-      "", 
-      "", 
-      "", 
-      "", 
+      "NA", 
+      "NA", 
+      ".", 
+      "NA", 
+      "NA", 
       "Subtelomere", 
       "NA", 
       "No_anno"
@@ -60,22 +60,22 @@
   "2": {
     "all_hits": [
       [
-        "", 
-        "", 
-        "", 
-        "", 
-        "", 
+        "NA", 
+        "NA", 
+        ".", 
+        "NA", 
+        "NA", 
         "Genedesert", 
         "NA", 
         "No_anno"
       ]
     ], 
     "best_hit": [
-      "", 
-      "", 
-      "", 
-      "", 
-      "", 
+      "NA", 
+      "NA", 
+      ".", 
+      "NA", 
+      "NA", 
       "Genedesert", 
       "NA", 
       "No_anno"
@@ -285,22 +285,22 @@
   "7": {
     "all_hits": [
       [
-        "", 
-        "", 
-        "", 
-        "", 
-        "", 
+        "NA", 
+        "NA", 
+        ".", 
+        "NA", 
+        "NA", 
         "Otherintergenic", 
         "NA", 
         "No_anno"
       ]
     ], 
     "best_hit": [
-      "", 
-      "", 
-      "", 
-      "", 
-      "", 
+      "NA", 
+      "NA", 
+      ".", 
+      "NA", 
+      "NA", 
       "Otherintergenic", 
       "NA", 
       "No_anno"

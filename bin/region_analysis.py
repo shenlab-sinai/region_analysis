@@ -22,8 +22,12 @@ def main():
     opt_parser.add_option('-g', '--genome', action='store',
                           dest='genome', help='Choose genome: mm10(default)',
                           default='mm10')
+    opt_parser.add_option('-v', '--version', action='store_true',
+                          dest='version', help='Version of Region_Analysis package')
     try:    
         (options, args) = opt_parser.parse_args(sys.argv)
+        if options.version == True:
+            print("Region_Analysis Version: %s\n" %regionanalysis.__version__)
         module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
         db_path = os.path.join(module_dir, "database/")
         input_file_name = options.input_file_name
