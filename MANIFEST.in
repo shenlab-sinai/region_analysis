@@ -1,7 +1,8 @@
-include README.rst
+include README.rst CHANGES.txt
 include regionanalysis/database/*
 include regionanalysis/example/*.bed
 include regionanalysis/example/*.out
+include regionanalysis/exceptions/*.bed
 exclude build/*
 exclude dist/*
 exclude regionanalysis.egg-info/*

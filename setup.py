@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='regionanalysis',
-      version='0.1',
+      version='0.1.1',
       description='A utility to annotate genomic intervals.',
       url='http://github.com/shenlab-sinai/region_analysis',
       author='Ning-Yi SHAO',

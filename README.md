@@ -1,6 +1,8 @@
 region_analysis
 ===============
 
+Region_analysis is a package derived and extended from region_analysis.pl in diffReps package. It is a utility to annotated the genomic intervals like the peak list of ChIP-seq or other interval lists from the genomic research. Now it supports human (hg19), mouse (mm9, mm10), and rat (rn4). New genomes will be added. Any question or suggestion is welcome!
+
 Dependency:
 
   bedtools: [https://code.google.com/p/bedtools/](https://code.google.com/p/bedtools/)

@@ -37,7 +37,7 @@ def main():
         opt_parser.print_help()
         return 1
 
-    # create a tmp bed file with index column
+    # create a tmp bed file with index column.
     in_f = file(input_file_name)
     input_filtered = [ line  for line in in_f  if not line.lstrip().startswith("#") ] # filter the comment lines
     # if there is header, store it and remove it from the query BED.
@@ -72,7 +72,7 @@ def main():
     st = pybedtools.BedTool(
         os.path.join(db_path, genome + "_subtelomere.bed")).saveas()
 
-    # load the input intervals to be annotated
+    # load the input intervals to be annotated.
     try:
         input_bed = pybedtools.BedTool(
             "".join(input_indexed), from_string=True).saveas()
@@ -81,10 +81,12 @@ def main():
         return 1
     list_input = [x.fields[:] for x in input_bed]
     col_no_input = input_bed.field_count()
-    # get the midpoint of the intervals
-    input_bed_mid = input_bed.each(pybedtools.featurefuncs.midpoint).saveas()
+    # get the midpoint of the intervals.
+    # there is a bug in midpoint function of pybedtools 0.6.3, so here an alternative function was used.
+    # input_bed_mid = input_bed.each(pybedtools.featurefuncs.midpoint).saveas()
+    input_bed_mid = pybedtools.BedTool("".join([regionanalysis.midpoint(x) for x in input_indexed]), from_string=True).saveas()
 
-    # intersectBed with annotations
+    # intersectBed with annotations.
     input_GB = input_bed_mid.intersect(anno, wao=True).saveas()
     list_GB = [x.fields[:] for x in input_GB]
     input_gd = input_bed_mid.intersect(gd, c=True, f=0.5).saveas()
@@ -94,7 +96,7 @@ def main():
     input_st = input_bed_mid.intersect(st, c=True, f=0.5).saveas()
     list_st = [x.fields[col_no_input + 0] for x in input_st]
 
-    # groupby the intersectBed results based on the index column
+    # groupby the intersectBed results based on the index column.
     input_idx = key = lambda s: s[col_no_input - 1]
     GB_dict = {}
     for key, GB_hits in groupby(list_GB, key=input_idx):
@@ -103,13 +105,13 @@ def main():
     output_file_best = file(input_file_name + ".annotated", "w")
     output_file = file(input_file_name + ".full.annotated", "w")
     output_file_json = file(input_file_name + ".full.annotated.json", "w")
-    # Output the header
+    # Output the header.
     if rhead == True:
         output_file.write("\t".join(
             headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype"]) + "\n")
         output_file_best.write("\t".join(
             headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype"]) + "\n")
-    # write to the output: input.bed.annotated, input.bed.full.annotated
+    # write to the output: input.bed.annotated, input.bed.full.annotated.
     json_dict = {}
     for i in range(0, len(input_bed)):
         output_lineL = list_input[i][:-1]  # original input line

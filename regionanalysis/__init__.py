@@ -1,17 +1,20 @@
-# import exceptions
-
-# class NoGenomeError(exceptions.Exception):
-#     """NoGenomeError: No genome in the database folder."""
-#     def __init__(self, args=None):
-#         super(NoGenomeError, self).__init__()
-#         self.arg = args
+def midpoint(cur_input):
+    """
+    Calculate the midpoint of the genomic interval.
+    cur_input: a line of input, the first 3 columns are the intervals in BED format.
+    """
+    mid_input = cur_input.split("\t")
+    midpoint = (int(mid_input[1]) + int(mid_input[2]))/2
+    mid_input[1] = str(midpoint)
+    mid_input[2] = str(midpoint + 1)
+    return "\t".join(mid_input)
 
 def getDis2TSS(anno_db, cur_input, col_no_input):
     """
-    Calculate the distance to TSS and decide the annotation feature of the entry
+    Calculate the distance to TSS and decide the annotation feature of the entry.
     """
-    # calculate TSS and TES based on strands
-    # if strand is not "-" then it will be treated as "+"
+    # calculate TSS and TES based on strands.
+    # if strand is not "-" then it will be treated as "+".
     if cur_input[col_no_input + 5] != "-":
         TSS = int(cur_input[col_no_input + 10])
         TES = int(cur_input[col_no_input + 11])
@@ -47,13 +50,13 @@ def getDis2TSS(anno_db, cur_input, col_no_input):
 
 def getBestHit(anno_db, col_no_input, GB_entry, gd_entry, st_entry, pc_entry):
     """
-    format all hits and get the best hit that is neartest to TSS
+    format all hits and get the best hit that is neartest to TSS.
     """
     best_hit, cur_output, Dis2TSS, Dis2TES = (None, None, None, None)
     formatted = []
 
     for i in GB_entry:
-        # discard null hit of genebody entry
+        # discard null hit of genebody entry.
         if not ((i[col_no_input] == ".") and (i[col_no_input + 1] == "-1")):
             cur_output, Dis2TSS, Dis2TES = getDis2TSS(
                 anno_db, i, col_no_input)

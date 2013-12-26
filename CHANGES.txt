@@ -1,0 +1,8 @@
+CHANGES
+=======
+
+v0.1.1
+There is a bug in midpoint function in pybedtools 0.6.3, so an alternative function was used.
+
+v0.1
+The first release. With the annotations of hg19, mm9, mm10, and rn4.
