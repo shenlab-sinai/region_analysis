@@ -37,7 +37,7 @@ def main():
         if (input_file_name is None) or (len(input_file_name)==0):
             raise SystemExit
     except SystemExit:
-        sys.stderr.write("Please assign proper input file!")
+        sys.stderr.write("Please assign proper input file!\n")
         opt_parser.print_help()
         return 1
 

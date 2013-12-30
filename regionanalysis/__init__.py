@@ -1,3 +1,5 @@
+__version__ = "0.1.1"
+
 def midpoint(cur_input):
     """
     Calculate the midpoint of the genomic interval.
@@ -39,11 +41,11 @@ def getDis2TSS(anno_db, cur_input, col_no_input):
         Pos = "genebody"
     if anno_db == "ensembl":  # output is gid
         cur_output = [
-            cur_input[col_no_input+3], cur_input[col_no_input+6], cur_input[col_no_input+5],
+            cur_input[col_no_input+3], cur_input[col_no_input+5], cur_input[col_no_input+6],
             cur_input[col_no_input+10], cur_input[col_no_input+11], Pos, str(Dis2TSS),
             cur_input[col_no_input+9]]
     else:  # output is gene symbol
-        cur_output = [cur_input[col_no_input+4], cur_input[col_no_input+6], cur_input[col_no_input+5],
+        cur_output = [cur_input[col_no_input+4], cur_input[col_no_input+5], cur_input[col_no_input+6],
             cur_input[col_no_input+10], cur_input[col_no_input+11], Pos, str(Dis2TSS),
             cur_input[col_no_input+9]]
     return (cur_output, Dis2TSS, Dis2TES)
@@ -64,23 +66,23 @@ def getBestHit(anno_db, col_no_input, GB_entry, gd_entry, st_entry, pc_entry):
                 best_hit = cur_output
             formatted.append(cur_output)
     if gd_entry != "0":
-        cur_output = ["", "", "", "", "", "Genedesert", "NA", "No_anno"]
+        cur_output = ["NA", "NA", ".", "NA", "NA", "Genedesert", "NA", "No_anno"]
         if (best_hit is None):
             best_hit = cur_output
         formatted.append(cur_output)
     if st_entry != "0":
-        cur_output = ["", "", "", "", "", "Subtelomere", "NA", "No_anno"]
+        cur_output = ["NA", "NA", ".", "NA", "NA", "Subtelomere", "NA", "No_anno"]
         if (best_hit is None):
             best_hit = cur_output
         formatted.append(cur_output)
     if pc_entry != "0":
-        cur_output = ["", "", "", "", "",
+        cur_output = ["NA", "NA", ".", "NA", "NA",
                       "Pericentromere", "NA", "No_anno"]
         if (best_hit is None):
             best_hit = cur_output
         formatted.append(cur_output)
     if best_hit is None:
-        cur_output = ["", "", "", "", "",
+        cur_output = ["NA", "NA", ".", "NA", "NA",
                       "Otherintergenic", "NA", "No_anno"]
         best_hit = cur_output
         formatted.append(cur_output)
