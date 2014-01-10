@@ -4,33 +4,34 @@ import os
 import sys
 import json
 from itertools import groupby
-from optparse import OptionParser
+from argparse import ArgumentParser
 import pybedtools
 import pybedtools.featurefuncs
 import regionanalysis
     
 def main():
-    opt_parser = OptionParser()
-    opt_parser.add_option('-i', '--input', action='store',
-                          dest='input_file_name',
+    opt_parser = ArgumentParser()
+    opt_parser.add_argument('-i', '--input', action='store',
                           help='Input region file must assume the first 3 columns contain (chr, start, end)')
-    opt_parser.add_option('-d', '--database', action='store',
-                          dest='anno_db', help='Choose database: refseq(default) or ensembl',
+    opt_parser.add_argument('-d', '--database', action='store',
+                          help='Choose database: refseq(default) or ensembl',
                           default='refseq')
-    opt_parser.add_option('-r', '--rhead', action='store_true',
-                          dest='rhead', help='Whether the input file contains column header', default=False)
-    opt_parser.add_option('-g', '--genome', action='store',
-                          dest='genome', help='Choose genome: mm10(default)',
+    opt_parser.add_argument('-r', '--rhead', action='store_true',
+                          help='Whether the input file contains column header', default=False)
+    opt_parser.add_argument('-g', '--genome', action='store',
+                          help='Choose genome: mm10(default)',
                           default='mm10')
-    opt_parser.add_option('-v', '--version', action='store_true',
-                          dest='version', help='Version of Region_Analysis package')
-    (options, args) = opt_parser.parse_args(sys.argv)
+    opt_parser.add_argument('-v', '--version', action='store_true',
+                          help='Version of Region_Analysis package')
+    options = opt_parser.parse_args()
     if options.version == True:
         print("Region_Analysis Version: %s\n" %regionanalysis.__version__)
+        opt_parser.print_help()
+        return 0
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
     db_path = os.path.join(module_dir, "database/")
-    input_file_name = options.input_file_name
-    anno_db = options.anno_db
+    input_file_name = options.input
+    anno_db = options.database
     rhead = options.rhead
     genome = options.genome
     if (input_file_name is None) or (len(input_file_name)==0):
