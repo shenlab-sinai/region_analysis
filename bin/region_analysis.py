@@ -24,22 +24,17 @@ def main():
                           default='mm10')
     opt_parser.add_option('-v', '--version', action='store_true',
                           dest='version', help='Version of Region_Analysis package')
-    try:    
-        (options, args) = opt_parser.parse_args(sys.argv)
-        if options.version == True:
-            print("Region_Analysis Version: %s\n" %regionanalysis.__version__)
-        module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
-        db_path = os.path.join(module_dir, "database/")
-        input_file_name = options.input_file_name
-        anno_db = options.anno_db
-        rhead = options.rhead
-        genome = options.genome
-        if (input_file_name is None) or (len(input_file_name)==0):
-            raise SystemExit
-    except SystemExit:
-        sys.stderr.write("Please assign proper input file!\n")
-        opt_parser.print_help()
-        return 1
+    (options, args) = opt_parser.parse_args(sys.argv)
+    if options.version == True:
+        print("Region_Analysis Version: %s\n" %regionanalysis.__version__)
+    module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
+    db_path = os.path.join(module_dir, "database/")
+    input_file_name = options.input_file_name
+    anno_db = options.anno_db
+    rhead = options.rhead
+    genome = options.genome
+    if (input_file_name is None) or (len(input_file_name)==0):
+        opt_parser.error("Please assign proper input file!\n--help will show the help information.")
 
     # create a tmp bed file with index column.
     in_f = file(input_file_name)
