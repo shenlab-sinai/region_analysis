@@ -48,7 +48,7 @@ class TestRA(unittest.TestCase):
     def test_exceptions(self):
         # in subprocess.Popen, shell=True, executable="bash" were used, because in UBUNTU, /bin/sh is not bash!
         # null input
-        null_msg = "Please assign proper input file!"
+        null_msg = "Please assign proper input file!\n"
         cmds = ["region_analysis.py"]
         p = subprocess.Popen(
             cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
