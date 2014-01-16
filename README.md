@@ -9,14 +9,17 @@ Dependency:
 
   pybedtools: [https://github.com/daler/pybedtools](https://github.com/daler/pybedtools)
 
-    If easy_install or pip is available, then:
-    ```
-      > easy_install pybedtools
-    ```
-      or:
-    ```
-      > pip isntall pybedtools
-    ```
+If easy_install or pip is available, then:
+
+```
+  > easy_install pybedtools
+```
+
+  or:
+
+```
+  > pip isntall pybedtools
+```
 
 #### region_analysis.py
 
