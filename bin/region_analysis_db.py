@@ -6,12 +6,11 @@ import json
 import string
 from argparse import ArgumentParser
 import regionanalysis.packageinfo
-# import regionanalysis.analysis
 import regionanalysis.annotationdb
 
 def read_gnlist(h_sp, installed_db, mode):
     """
-    Read installed genomes list.
+    Read installed genomes list and make human readable format.
        Args:
          h_sp: vector of header.
          installed_db: list of dicts with genome information.
@@ -42,6 +41,9 @@ def read_gnlist(h_sp, installed_db, mode):
     return (h_sp, g_tbl, v_cw)
 
 def listgn(args):
+    """
+    List informations of all installed databases.
+    """
     import math
 
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
@@ -60,6 +62,9 @@ def listgn(args):
 
 
 def install(args):
+    """
+    Install databases from tar.gz file to database folder.
+    """
     import tarfile
     pkg_file = args.pkg
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
@@ -75,13 +80,16 @@ def install(args):
     print "Extracting information from package...\n",
     sys.stdout.flush()
     pkg_files = pkg_f.getnames()
-    # extract package info
+    # extract package info from json.
     json_file = [x for x in pkg_files if os.path.splitext(x)[1] == ".json"][0]
     json_fp = pkg_f.extractfile(json_file)
     cur_genome_info = json.load(json_fp)
     json_fp.close()
+    # check if the genome is in the the databases.
     for genome_info in installed_db:
-        if (genome_info["genome"] == cur_genome_info["genome"]) and (genome_info["version"] == cur_genome_info["version"]):
+        (location, genome_name) = os.path.split(genome_info["path"])
+        if genome_name == pkg_files[0]:
+        # if (genome_info["genome"] == cur_genome_info["genome"]) and (genome_info["version"] == cur_genome_info["version"]):
             sys.stderr.write("%s, RAver %s already installed at %s!\n"%(genome_info["genome"], genome_info["version"], genome_info["path"]))
             sys.exit()
     install_path = regionanalysis.annotationdb.getInstallPath(module_dir)

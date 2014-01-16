@@ -25,11 +25,14 @@ def main():
     opt_parser.add_argument('-g', '--genome', action='store',
                           help='Choose genome: mm10(default)',
                           default='mm10')
+    opt_parser.add_argument('-rv', '--RAver', action='store',
+                          help='Version of Region Analysis databases, default is the newest',
+                          default=None)
     opt_parser.add_argument('-v', '--version', action='store_true',
                           help='Version of Region_Analysis package')
     options = opt_parser.parse_args()
     if options.version == True:
-        print("Region_Analysis Version: %s\n" %regionanalysis.packageinfo.__version__)
+        sys.stdout.write("Region_Analysis Version: %s\n" %regionanalysis.packageinfo.__version__)
         opt_parser.print_help()
         return 0
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
@@ -38,16 +41,21 @@ def main():
     anno_db = options.database
     rhead = options.rhead
     genome = options.genome
+    rv = options.RAver
     if (input_file_name is None) or (len(input_file_name)==0):
         opt_parser.error("Please assign proper input file!\n--help will show the help information.")
-    genome_info = regionanalysis.annotationdb.getAnnoABPath(module_dir, genome, anno_db)
+    genome_info = regionanalysis.annotationdb.getAnnoABPath(module_dir, genome, anno_db, rv)
     try:
         if genome_info is None:
             raise SystemExit
         db_path = genome_info["path"]
     except SystemExit:
-        sys.stderr.write("%s not in the genome database!\n"%genome)
-        return 1
+        if rv is None:
+            sys.stderr.write("%s not in the genome database!\n"%genome)
+            return 1
+        else:
+            sys.stderr.write("%s, RAver %s not in the genome database!\n"%(genome, rv))
+            return 1
 
     # create a tmp bed file with index column.
     in_f = file(input_file_name)

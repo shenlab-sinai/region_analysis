@@ -1,0 +1,11 @@
+{
+	"genome": "mm10", "version": "1.00", "species": "mus_musculus", "assembly": "GRCm38",
+	"databases":[
+	{
+		"database": "refseq", "version": "mm10"
+	},
+	{
+		"database": "ensembl", "version": "71"
+	}
+	]
+}
