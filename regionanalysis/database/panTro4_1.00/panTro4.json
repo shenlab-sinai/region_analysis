@@ -1,0 +1,11 @@
+{
+	"genome": "panTro4",
+	"databases":[
+	{
+		"database": "refseq", "version": "panTro4"
+	},
+	{
+		"database": "ensembl", "version": "74"
+	}
+	]
+}

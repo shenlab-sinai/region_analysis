@@ -1,0 +1,11 @@
+{
+	"genome": "equCab2",
+	"databases":[
+	{
+		"database": "refseq", "version": "equCab2"
+	},
+	{
+		"database": "ensembl", "version": "74"
+	}
+	]
+}

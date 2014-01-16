@@ -7,10 +7,14 @@ from itertools import groupby
 from argparse import ArgumentParser
 import pybedtools
 import pybedtools.featurefuncs
-import regionanalysis
+import regionanalysis.packageinfo
+import regionanalysis.analysis
+import regionanalysis.annotationdb
+
     
 def main():
-    opt_parser = ArgumentParser()
+    opt_parser = ArgumentParser(description="Annotate genomic intervals with RefSeq or Ensembl databases.",
+                                prog="region_analysis.py")
     opt_parser.add_argument('-i', '--input', action='store',
                           help='Input region file must assume the first 3 columns contain (chr, start, end)')
     opt_parser.add_argument('-d', '--database', action='store',
@@ -25,17 +29,25 @@ def main():
                           help='Version of Region_Analysis package')
     options = opt_parser.parse_args()
     if options.version == True:
-        print("Region_Analysis Version: %s\n" %regionanalysis.__version__)
+        print("Region_Analysis Version: %s\n" %regionanalysis.packageinfo.__version__)
         opt_parser.print_help()
         return 0
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
-    db_path = os.path.join(module_dir, "database/")
+    # db_path = os.path.join(module_dir, "database/")
     input_file_name = options.input
     anno_db = options.database
     rhead = options.rhead
     genome = options.genome
     if (input_file_name is None) or (len(input_file_name)==0):
         opt_parser.error("Please assign proper input file!\n--help will show the help information.")
+    genome_info = regionanalysis.annotationdb.getAnnoABPath(module_dir, genome, anno_db)
+    try:
+        if genome_info is None:
+            raise SystemExit
+        db_path = genome_info["path"]
+    except SystemExit:
+        sys.stderr.write("%s not in the genome database!\n"%genome)
+        return 1
 
     # create a tmp bed file with index column.
     in_f = file(input_file_name)
@@ -52,11 +64,9 @@ def main():
         db_path, genome + "." + anno_db + ".biotype_region_ext.bed")
     try:
         if not os.path.exists(anno_bed):
-    #         raise regionanalysis.NoGenomeError
-    # except regionanalysis.NoGenomeError:
             raise SystemExit
     except SystemExit:
-        sys.stderr.write("%s not in the genome database!"%genome)
+        sys.stderr.write("%s genome not properly installed!\n"%genome)
         return 1
 
     # use saveas() to convert the BedTool objects to file-based objects,
@@ -84,7 +94,7 @@ def main():
     # get the midpoint of the intervals.
     # there is a bug in midpoint function of pybedtools 0.6.3, so here an alternative function was used.
     # input_bed_mid = input_bed.each(pybedtools.featurefuncs.midpoint).saveas()
-    input_bed_mid = pybedtools.BedTool("".join([regionanalysis.midpoint(x) for x in input_indexed]), from_string=True).saveas()
+    input_bed_mid = pybedtools.BedTool("".join([regionanalysis.analysis.midpoint(x) for x in input_indexed]), from_string=True).saveas()
 
     # intersectBed with annotations.
     input_GB = input_bed_mid.intersect(anno, wao=True).saveas()
@@ -117,7 +127,7 @@ def main():
         output_lineL = list_input[i][:-1]  # original input line
         json_dict[str(i)] = {}
         json_dict[str(i)]["query_interval"] = output_lineL
-        formatted, best_hit = regionanalysis.getBestHit(
+        formatted, best_hit = regionanalysis.analysis.getBestHit(
             anno_db, col_no_input, GB_dict[str(i)], list_gd[i], list_st[i], list_pc[i])
         output_file_best.write("\t".join(output_lineL + best_hit) + "\n")
         json_dict[str(i)]["best_hit"] = best_hit

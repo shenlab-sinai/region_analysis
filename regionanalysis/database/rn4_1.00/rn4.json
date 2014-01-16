@@ -1,0 +1,11 @@
+{
+	"genome": "rn4",
+	"databases":[
+	{
+		"database": "refseq", "version": "rn4"
+	},
+	{
+		"database": "ensembl", "version": "69"
+	}
+	]
+}
