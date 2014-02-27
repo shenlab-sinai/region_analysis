@@ -108,18 +108,22 @@ def remove(args):
     cur_genome = args.gn
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
     installed_db = regionanalysis.annotationdb.getAllInstalledDB(module_dir)
+    yestoall = args.yes
     for genome_info in installed_db:
         do_rm = False
         if (genome_info["genome"] == cur_genome):
             sys.stdout.write("%s, RAver %s in the databases will be removed.\n"%(cur_genome, genome_info["version"]))
-            ans = raw_input("Continue?(y/n): ")
-            while True:
-                if ans == 'y' or ans == 'Y' or ans == 'n' or ans == 'N':
-                    break
-                else:
-                    ans = raw_input("The answer must be y/Y or n/N: ")
-            if ans == 'y' or ans == 'Y':
+            if yestoall:
                 do_rm = True
+            else:
+                ans = raw_input("Continue?(y/n): ")
+                while True:
+                    if ans == 'y' or ans == 'Y' or ans == 'n' or ans == 'N':
+                        break
+                    else:
+                        ans = raw_input("The answer must be y/Y or n/N: ")
+                if ans == 'y' or ans == 'Y':
+                    do_rm = True
         if do_rm:
             sys.stdout.write("Removing genome...\n")
             sys.stdout.flush()
@@ -132,6 +136,7 @@ def main():
         prog="region_analysis_db.py")
     subparsers = opt_parser.add_subparsers(title="Subcommands",
                                            help="additional help")
+
     # list parser.
     parser_list = subparsers.add_parser("list", help="List genomes installed \
                                                       in database")
@@ -151,6 +156,8 @@ def main():
     parser_remove.add_argument("gn", help="Name of genome to be \
                                            removed(e.g. hg19)", type=str)
     parser_remove.set_defaults(func=remove)
+    parser_remove.add_argument("-y", "--yes", help="Say yes to all prompted questions",
+                        action="store_true")
 
     args = opt_parser.parse_args()
     args.func(args)
