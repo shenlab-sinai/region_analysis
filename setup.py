@@ -1,4 +1,5 @@
 from setuptools import setup
+from regionanalysis import packageinfo
 
 # Hack to prevent stupid TypeError: 'NoneType' object is not callable error on
 # exit of python setup.py test # in multiprocessing/util.py _exit_function when
@@ -10,8 +11,11 @@ try:
 except ImportError:
     pass
 
+cur_version = packageinfo.__version__
+
 setup(name='regionanalysis',
-      version='0.1.1',
+      # version='0.1.1',
+      version=cur_version,
       description='A utility to annotate genomic intervals.',
       url='http://github.com/shenlab-sinai/region_analysis',
       author='Ning-Yi SHAO',

@@ -44,7 +44,7 @@ def main():
     rv = options.RAver
     if (input_file_name is None) or (len(input_file_name)==0):
         opt_parser.error("Please assign proper input file!\n--help will show the help information.")
-    genome_info = regionanalysis.annotationdb.getAnnoABPath(module_dir, genome, anno_db, rv)
+    genome_info = regionanalysis.annotationdb.getAnnoDBPath(module_dir, genome, anno_db, rv)
     try:
         if genome_info is None:
             raise SystemExit

@@ -59,7 +59,7 @@ def getAllInstalledDB(module_dir):
         installed_db.extend(getPathDB(query_path))
     return installed_db
 
-def getAnnoABPath(module_dir, genome, anno_db, RA_ver=None):
+def getAnnoDBPath(module_dir, genome, anno_db, RA_ver=None):
     installed_db = getAllInstalledDB(module_dir)
     cur_genome = None
     anno_db_ver = None
