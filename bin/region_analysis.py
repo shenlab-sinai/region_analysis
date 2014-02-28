@@ -126,9 +126,9 @@ def main():
     # Output the header.
     if rhead == True:
         output_file.write("\t".join(
-            headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype"]) + "\n")
+            headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype", "GeneSymbol"]) + "\n")
         output_file_best.write("\t".join(
-            headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype"]) + "\n")
+            headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype", "GeneSymbol"]) + "\n")
     # write to the output: input.bed.annotated, input.bed.full.annotated.
     json_dict = {}
     for i in range(0, len(input_bed)):

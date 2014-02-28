@@ -7,38 +7,10 @@
         ".", 
         "NA", 
         "NA", 
-        "Pericentromere", 
-        "NA", 
-        "No_anno"
-      ]
-    ], 
-    "best_hit": [
-      "NA", 
-      "NA", 
-      ".", 
-      "NA", 
-      "NA", 
-      "Pericentromere", 
-      "NA", 
-      "No_anno"
-    ], 
-    "query_interval": [
-      "chr1", 
-      "3000100", 
-      "3000200"
-    ]
-  }, 
-  "1": {
-    "all_hits": [
-      [
-        "NA", 
-        "NA", 
-        ".", 
-        "NA", 
-        "NA", 
         "Subtelomere", 
         "NA", 
-        "No_anno"
+        "No_anno", 
+        "NA"
       ]
     ], 
     "best_hit": [
@@ -49,7 +21,8 @@
       "NA", 
       "Subtelomere", 
       "NA", 
-      "No_anno"
+      "No_anno", 
+      "NA"
     ], 
     "query_interval": [
       "chr1", 
@@ -57,7 +30,7 @@
       "102200"
     ]
   }, 
-  "2": {
+  "1": {
     "all_hits": [
       [
         "NA", 
@@ -67,7 +40,8 @@
         "NA", 
         "Genedesert", 
         "NA", 
-        "No_anno"
+        "No_anno", 
+        "NA"
       ]
     ], 
     "best_hit": [
@@ -78,7 +52,8 @@
       "NA", 
       "Genedesert", 
       "NA", 
-      "No_anno"
+      "No_anno", 
+      "NA"
     ], 
     "query_interval": [
       "chr1", 
@@ -86,7 +61,7 @@
       "7190200"
     ]
   }, 
-  "3": {
+  "2": {
     "all_hits": [
       [
         "ENSMUSG00000012396", 
@@ -96,7 +71,8 @@
         "122714632", 
         "ProximalPromoter", 
         "79", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -106,7 +82,8 @@
         "122714633", 
         "ProximalPromoter", 
         "0", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -116,7 +93,8 @@
         "122714632", 
         "ProximalPromoter", 
         "3", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ]
     ], 
     "best_hit": [
@@ -127,7 +105,8 @@
       "122714633", 
       "ProximalPromoter", 
       "0", 
-      "protein_coding"
+      "protein_coding", 
+      "Nanog"
     ], 
     "query_interval": [
       "chr6", 
@@ -135,7 +114,7 @@
       "122707668"
     ]
   }, 
-  "4": {
+  "3": {
     "all_hits": [
       [
         "ENSMUSG00000012396", 
@@ -145,7 +124,8 @@
         "122714632", 
         "Promoter1k", 
         "-821", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -155,7 +135,8 @@
         "122714633", 
         "Promoter1k", 
         "-900", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -165,7 +146,8 @@
         "122714632", 
         "Promoter1k", 
         "-897", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ]
     ], 
     "best_hit": [
@@ -176,7 +158,8 @@
       "122714632", 
       "Promoter1k", 
       "-821", 
-      "protein_coding"
+      "protein_coding", 
+      "Nanog"
     ], 
     "query_interval": [
       "chr6", 
@@ -184,7 +167,7 @@
       "122706768"
     ]
   }, 
-  "5": {
+  "4": {
     "all_hits": [
       [
         "ENSMUSG00000012396", 
@@ -194,7 +177,8 @@
         "122714632", 
         "Promoter3k", 
         "-1321", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -204,7 +188,8 @@
         "122714633", 
         "Promoter3k", 
         "-1400", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -214,7 +199,8 @@
         "122714632", 
         "Promoter3k", 
         "-1397", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ]
     ], 
     "best_hit": [
@@ -225,7 +211,8 @@
       "122714632", 
       "Promoter3k", 
       "-1321", 
-      "protein_coding"
+      "protein_coding", 
+      "Nanog"
     ], 
     "query_interval": [
       "chr6", 
@@ -233,7 +220,7 @@
       "122706268"
     ]
   }, 
-  "6": {
+  "5": {
     "all_hits": [
       [
         "ENSMUSG00000012396", 
@@ -243,7 +230,8 @@
         "122714632", 
         "genebody", 
         "6389", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -253,7 +241,8 @@
         "122714633", 
         "genebody", 
         "6310", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ], 
       [
         "ENSMUSG00000012396", 
@@ -263,7 +252,8 @@
         "122714632", 
         "genebody", 
         "6313", 
-        "protein_coding"
+        "protein_coding", 
+        "Nanog"
       ]
     ], 
     "best_hit": [
@@ -274,7 +264,8 @@
       "122714633", 
       "genebody", 
       "6310", 
-      "protein_coding"
+      "protein_coding", 
+      "Nanog"
     ], 
     "query_interval": [
       "chr6", 
@@ -282,7 +273,7 @@
       "122713978"
     ]
   }, 
-  "7": {
+  "6": {
     "all_hits": [
       [
         "NA", 
@@ -292,7 +283,8 @@
         "NA", 
         "Otherintergenic", 
         "NA", 
-        "No_anno"
+        "No_anno", 
+        "NA"
       ]
     ], 
     "best_hit": [
@@ -303,7 +295,8 @@
       "NA", 
       "Otherintergenic", 
       "NA", 
-      "No_anno"
+      "No_anno", 
+      "NA"
     ], 
     "query_interval": [
       "chr6", 
