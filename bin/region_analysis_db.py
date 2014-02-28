@@ -60,15 +60,28 @@ def listgn(args):
 
     # print(installed_db) # for debuging
 
+def getAns():
+    """
+    Get the answer "yes" or "No" from user's input.
+    """
+    ans = raw_input("Continue?(y/n): ")
+    while True:
+        if ans == 'y' or ans == 'Y' or ans == 'n' or ans == 'N':
+            break
+        else:
+            ans = raw_input("The answer must be y/Y or n/N: ")
+    return ans
 
 def install(args):
     """
     Install databases from tar.gz file to database folder.
     """
     import tarfile
+    import shutil
     pkg_file = args.pkg
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
     installed_db = regionanalysis.annotationdb.getAllInstalledDB(module_dir)
+    yestoall = args.yes
 
     try:
         pkg_f = tarfile.open(pkg_file, "r:gz")
@@ -89,9 +102,19 @@ def install(args):
     for genome_info in installed_db:
         (location, genome_name) = os.path.split(genome_info["path"])
         if genome_name == pkg_files[0]:
-        # if (genome_info["genome"] == cur_genome_info["genome"]) and (genome_info["version"] == cur_genome_info["version"]):
             sys.stderr.write("%s, RAver %s already installed at %s!\n"%(genome_info["genome"], genome_info["version"], genome_info["path"]))
-            sys.exit()
+            if yestoall == True:
+                sys.stderr.write("The installed database will be removed!\n")
+                shutil.rmtree(genome_info["path"])
+            else:
+                sys.stderr.write("Would you want to continue the installation?\n")
+                ans = getAns()
+                if ans == 'y' or ans == 'Y':
+                    sys.stderr.write("The installed database will be removed!\n")
+                    shutil.rmtree(genome_info["path"])
+                else:
+                    sys.stderr.write("The installation is cancelled!")
+                    sys.exit()
     install_path = regionanalysis.annotationdb.getInstallPath(module_dir)
     try:
         if not os.path.isdir(install_path):
@@ -101,7 +124,6 @@ def install(args):
     except tarfile.ExtractError:
         print "Extract files from package error.", 
         print "The downloaded file may be corrupted."
-
 
 def remove(args):
     import shutil
@@ -116,19 +138,13 @@ def remove(args):
             if yestoall:
                 do_rm = True
             else:
-                ans = raw_input("Continue?(y/n): ")
-                while True:
-                    if ans == 'y' or ans == 'Y' or ans == 'n' or ans == 'N':
-                        break
-                    else:
-                        ans = raw_input("The answer must be y/Y or n/N: ")
+                ans = getAns()
                 if ans == 'y' or ans == 'Y':
                     do_rm = True
         if do_rm:
             sys.stdout.write("Removing genome...\n")
             sys.stdout.flush()
             shutil.rmtree(genome_info["path"])
-
 
 def main():
     opt_parser = ArgumentParser(
@@ -149,6 +165,8 @@ def main():
     parser_install.add_argument("pkg", help="Package file(.tar.gz) to install",
                                 type=str)
     parser_install.set_defaults(func=install)
+    parser_install.add_argument("-y", "--yes", help="Say yes to all prompted questions",
+                                action="store_true")
 
     # remove parser.
     parser_remove = subparsers.add_parser("remove",
