@@ -101,8 +101,7 @@ def install(args):
     # check if the genome is in the the databases.
     for genome_info in installed_db:
         (location, genome_name) = os.path.split(genome_info["path"])
-        cur_pkg_info = string.split(pkg_files[0], sep="_")
-        if genome_info["genome"] == cur_pkg_info[0] and genome_info["version"] == cur_pkg_info[1]:
+        if genome_info["genome"] == cur_genome_info["genome"]:
             sys.stderr.write("%s, RAver %s already installed at %s!\n"%(genome_info["genome"], genome_info["version"], genome_info["path"]))
             if yestoall == True:
                 sys.stderr.write("The installed database will be removed!\n")
