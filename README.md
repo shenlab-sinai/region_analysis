@@ -32,13 +32,13 @@ After the installation, for testing:
 If easy_install or pip is available, then:
 
 ```
-  > easy_install pybedtools
+  > easy_install regionanalysis
 ```
 
   or:
 
 ```
-  > pip isntall pybedtools
+  > pip isntall regionanalysis
 ```
 
 ## Howtos
