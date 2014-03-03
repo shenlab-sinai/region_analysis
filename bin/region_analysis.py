@@ -11,28 +11,30 @@ import regionanalysis.packageinfo
 import regionanalysis.analysis
 import regionanalysis.annotationdb
 
-    
+
 def main():
-    opt_parser = ArgumentParser(description="Annotate genomic intervals with RefSeq or Ensembl databases.",
-                                prog="region_analysis.py")
+    opt_parser = ArgumentParser(
+        description="Annotate genomic intervals with RefSeq or Ensembl databases.",
+        prog="region_analysis.py")
     opt_parser.add_argument('-i', '--input', action='store',
-                          help='Input region file must assume the first 3 columns contain (chr, start, end)')
+                            help='Input region file must assume the first 3 columns contain (chr, start, end)')
     opt_parser.add_argument('-d', '--database', action='store',
-                          help='Choose database: refseq(default) or ensembl',
-                          default='refseq')
+                            help='Choose database: refseq(default) or ensembl',
+                            default='refseq')
     opt_parser.add_argument('-r', '--rhead', action='store_true',
-                          help='Whether the input file contains column header', default=False)
+                            help='Whether the input file contains column header', default=False)
     opt_parser.add_argument('-g', '--genome', action='store',
-                          help='Choose genome: mm10(default)',
-                          default='mm10')
+                            help='Choose genome: mm10(default)',
+                            default='mm10')
     opt_parser.add_argument('-rv', '--RAver', action='store',
-                          help='Version of Region Analysis databases, default is the newest',
-                          default=None)
+                            help='Version of Region Analysis databases, default is the newest',
+                            default=None)
     opt_parser.add_argument('-v', '--version', action='store_true',
-                          help='Version of Region_Analysis package')
+                            help='Version of Region_Analysis package')
     options = opt_parser.parse_args()
     if options.version == True:
-        sys.stdout.write("Region_Analysis Version: %s\n" %regionanalysis.packageinfo.__version__)
+        sys.stdout.write("Region_Analysis Version: %s\n" %
+                         regionanalysis.packageinfo.__version__)
         opt_parser.print_help()
         return 0
     module_dir = os.path.dirname(os.path.realpath(regionanalysis.__file__))
@@ -42,29 +44,36 @@ def main():
     rhead = options.rhead
     genome = options.genome
     rv = options.RAver
-    if (input_file_name is None) or (len(input_file_name)==0):
-        opt_parser.error("Please assign proper input file!\n--help will show the help information.")
-    genome_info = regionanalysis.annotationdb.getAnnoDBPath(module_dir, genome, anno_db, rv)
+    if (input_file_name is None) or (len(input_file_name) == 0):
+        opt_parser.error(
+            "Please assign proper input file!\n--help will show the help information.")
+    genome_info = regionanalysis.annotationdb.getAnnoDBPath(
+        module_dir, genome, anno_db, rv)
     try:
         if genome_info is None:
             raise SystemExit
         db_path = genome_info["path"]
     except SystemExit:
         if rv is None:
-            sys.stderr.write("%s not in the genome database!\n"%genome)
+            sys.stderr.write("%s not in the genome database!\n" % genome)
             return 1
         else:
-            sys.stderr.write("%s, RAver %s not in the genome database!\n"%(genome, rv))
+            sys.stderr.write("%s, RAver %s not in the genome database!\n" %
+                             (genome, rv))
             return 1
 
     # create a tmp bed file with index column.
     in_f = file(input_file_name)
-    input_filtered = [ line  for line in in_f  if not line.lstrip().startswith("#") ] # filter the comment lines
+    # filter the comment lines
+    input_filtered = [
+        line for line in in_f if not line.lstrip().startswith("#")]
     # if there is header, store it and remove it from the query BED.
     if rhead == True:
         headlineL = input_filtered[0].strip().split("\t")
         del input_filtered[0]
-    input_indexed = [ '%s\t%d\n' % (line.strip(), i) for i, line in enumerate(input_filtered) ] # add index column to the bed lines
+    # add index column to the bed lines
+    input_indexed = ['%s\t%d\n' % (line.strip(), i)
+                     for i, line in enumerate(input_filtered)]
     in_f.close()
 
     # read all annotations into a dictionary, for the further output.
@@ -74,7 +83,7 @@ def main():
         if not os.path.exists(anno_bed):
             raise SystemExit
     except SystemExit:
-        sys.stderr.write("%s genome not properly installed!\n"%genome)
+        sys.stderr.write("%s genome not properly installed!\n" % genome)
         return 1
 
     # use saveas() to convert the BedTool objects to file-based objects,
@@ -102,7 +111,8 @@ def main():
     # get the midpoint of the intervals.
     # there is a bug in midpoint function of pybedtools 0.6.3, so here an alternative function was used.
     # input_bed_mid = input_bed.each(pybedtools.featurefuncs.midpoint).saveas()
-    input_bed_mid = pybedtools.BedTool("".join([regionanalysis.analysis.midpoint(x) for x in input_indexed]), from_string=True).saveas()
+    input_bed_mid = pybedtools.BedTool(
+        "".join([regionanalysis.analysis.midpoint(x) for x in input_indexed]), from_string=True).saveas()
 
     # intersectBed with annotations.
     input_GB = input_bed_mid.intersect(anno, wao=True).saveas()

@@ -4,6 +4,7 @@ import os
 import regionanalysis
 import string
 
+
 class TestRA(unittest.TestCase):
 
     def setUp(self):
@@ -67,7 +68,7 @@ class TestRA(unittest.TestCase):
                 "Error in input file! Please check the format!",
                 "Error in input file! Please check the format!"]
         for i in range(0, 3):
-            input_example = os.path.join(self.exception_dir, "%d.bed"%i)
+            input_example = os.path.join(self.exception_dir, "%d.bed" % i)
             cmds = ["region_analysis.py", "-d", "ensembl",
                     "-g", genomes[i], "-i", input_example]
             print(cmds)

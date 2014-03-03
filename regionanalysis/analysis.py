@@ -4,10 +4,11 @@ def midpoint(cur_input):
     cur_input: a line of input, the first 3 columns are the intervals in BED format.
     """
     mid_input = cur_input.split("\t")
-    midpoint = (int(mid_input[1]) + int(mid_input[2]))/2
+    midpoint = (int(mid_input[1]) + int(mid_input[2])) / 2
     mid_input[1] = str(midpoint)
     mid_input[2] = str(midpoint + 1)
     return "\t".join(mid_input)
+
 
 def getDis2TSS(anno_db, cur_input, col_no_input):
     """
@@ -39,14 +40,22 @@ def getDis2TSS(anno_db, cur_input, col_no_input):
         Pos = "Genebody"
     if anno_db == "ensembl":  # output is gid
         cur_output = [
-            cur_input[col_no_input+3], cur_input[col_no_input+5], cur_input[col_no_input+6],
-            cur_input[col_no_input+10], cur_input[col_no_input+11], Pos, str(Dis2TSS),
-            cur_input[col_no_input+9], cur_input[col_no_input+4]]
+            cur_input[col_no_input + 3], cur_input[col_no_input +
+                                                   5], cur_input[
+                col_no_input + 6],
+            cur_input[col_no_input + 10], cur_input[col_no_input +
+                                                    11], Pos, str(Dis2TSS),
+            cur_input[col_no_input + 9], cur_input[col_no_input + 4]]
     else:  # output is gene symbol
-        cur_output = [cur_input[col_no_input+4], cur_input[col_no_input+5], cur_input[col_no_input+6],
-            cur_input[col_no_input+10], cur_input[col_no_input+11], Pos, str(Dis2TSS),
-            cur_input[col_no_input+9], cur_input[col_no_input+4]]
+        cur_output = [
+            cur_input[col_no_input + 4], cur_input[col_no_input +
+                                                   5], cur_input[
+                col_no_input + 6],
+            cur_input[col_no_input + 10], cur_input[col_no_input +
+                                                    11], Pos, str(Dis2TSS),
+            cur_input[col_no_input + 9], cur_input[col_no_input + 4]]
     return (cur_output, Dis2TSS, Dis2TES)
+
 
 def getBestHit(anno_db, col_no_input, GB_entry, gd_entry, st_entry, pc_entry):
     """
@@ -64,12 +73,14 @@ def getBestHit(anno_db, col_no_input, GB_entry, gd_entry, st_entry, pc_entry):
                 best_hit = cur_output
             formatted.append(cur_output)
     if gd_entry != "0":
-        cur_output = ["NA", "NA", ".", "NA", "NA", "Genedeserts", "NA", "No_anno", "NA"]
+        cur_output = ["NA", "NA", ".", "NA", "NA",
+                      "Genedeserts", "NA", "No_anno", "NA"]
         if (best_hit is None):
             best_hit = cur_output
         formatted.append(cur_output)
     if st_entry != "0":
-        cur_output = ["NA", "NA", ".", "NA", "NA", "Subtelomere", "NA", "No_anno", "NA"]
+        cur_output = ["NA", "NA", ".", "NA", "NA",
+                      "Subtelomere", "NA", "No_anno", "NA"]
         if (best_hit is None):
             best_hit = cur_output
         formatted.append(cur_output)

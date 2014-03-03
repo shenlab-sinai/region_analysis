@@ -3,6 +3,7 @@ import sys
 import json
 import glob
 
+
 def loadJSON(json_file):
     fp = open(json_file)
     genome_info = json.load(fp)
@@ -10,6 +11,7 @@ def loadJSON(json_file):
     genome_info[u"file"] = os.path.basename(json_file)
     genome_info[u"path"] = os.path.dirname(json_file)
     return genome_info
+
 
 def expandOsPath(path):
     """
@@ -19,6 +21,7 @@ def expandOsPath(path):
     """
     return os.path.expanduser(os.path.expandvars(path))
 
+
 def getAllPath(module_dir):
     search_path = []
     try:
@@ -26,12 +29,13 @@ def getAllPath(module_dir):
     except:
         environ_path = None
     if environ_path != None:
-        search_path.extend(glob.glob(os.path.join(environ_path,"*/")))
+        search_path.extend(glob.glob(os.path.join(environ_path, "*/")))
     home_dir = expandOsPath("~/.config/regionanalysis/")
     if os.path.isdir(home_dir):
         search_path.extend(glob.glob(os.path.join(home_dir, "*/")))
     search_path.extend(glob.glob(os.path.join(module_dir, "database/*/")))
     return search_path
+
 
 def getInstallPath(module_dir):
     try:
@@ -46,11 +50,13 @@ def getInstallPath(module_dir):
     except:
         return os.path.join(module_dir, "database/")
 
+
 def getPathDB(currunt_path):
     jsons = expandOsPath(os.path.join(currunt_path, "*.json"))
     files = [x for x in glob.glob(jsons)]
     genome_infos = map(loadJSON, files)
     return genome_infos
+
 
 def getAllInstalledDB(module_dir):
     search_path = getAllPath(module_dir)
@@ -58,6 +64,7 @@ def getAllInstalledDB(module_dir):
     for query_path in search_path:
         installed_db.extend(getPathDB(query_path))
     return installed_db
+
 
 def getAnnoDBPath(module_dir, genome, anno_db, RA_ver=None):
     installed_db = getAllInstalledDB(module_dir)
@@ -74,7 +81,8 @@ def getAnnoDBPath(module_dir, genome, anno_db, RA_ver=None):
                     cur_genome = genome_info
                     anno_db_ver = db_info["version"]
     if cur_genome is not None:
-        sys.stdout.write("%s database version %s of %s, RAver %s will be used.\n"%(anno_db,anno_db_ver, genome, cur_genome["version"]))
+        sys.stdout.write(
+            "%s database version %s of %s, RAver %s will be used.\n" %
+            (anno_db, anno_db_ver, genome, cur_genome["version"]))
         return cur_genome
     return None
-
