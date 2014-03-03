@@ -10,54 +10,75 @@ horse (equCab2). New genomes will be added. Any question or suggestion
 is welcome! If you want new genome to be added, please open an issue.
 
 Dependency:
+-----------
 
 bedtools: https://code.google.com/p/bedtools/
 
 pybedtools: https://github.com/daler/pybedtools
 
+Installation
+------------
+
+In terminal, just:
+
+.. code:: bash
+
+    > python setup.py install
+
+For debugging, just:
+
+.. code:: bash
+
+    > python setup.py develop
+
+After the installation, for testing:
+
+.. code:: bash
+
+    > python setup.py test
+
+**(Not recommanded, because RA is under rapidly updating these days)**
+If easy\_install or pip is available, then:
+
 ::
 
-    If easy_install or pip is available, then:
-    ```
       > easy_install pybedtools
-    ```
-      or:
-    ```
+
+or:
+
+::
+
       > pip isntall pybedtools
-    ```
+
+Howtos
+------
 
 region\_analysis.py
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
 The utility to be used to annotate genomic intervals.
 
-::
+.. code:: bash
 
-    Usage: region_analysis.py [options]
+    usage: region_analysis.py [-h] [-i INPUT] [-d DATABASE] [-r] [-g GENOME]
+                              [-rv RAVER] [-v]
 
-    Options:
+    Annotate genomic intervals with RefSeq or Ensembl databases.
 
+    optional arguments:
       -h, --help            show this help message and exit
-
-      -i INPUT_FILE_NAME, --input=INPUT_FILE_NAME
-
+      -i INPUT, --input INPUT
                             Input region file must assume the first 3 columns
-
                             contain (chr, start, end)
-
-      -d ANNO_DB, --database=ANNO_DB
-
+      -d DATABASE, --database DATABASE
                             Choose database: refseq(default) or ensembl
-
       -r, --rhead           Whether the input file contains column header
-
-      -g GENOME, --genome=GENOME
-
-                            Choose genome: mm10(default).
-
-      -v, --version
-
-                            Version of Region_Analysis package
+      -g GENOME, --genome GENOME
+                            Choose genome: mm10(default)
+      -rv RAVER, --RAver RAVER
+                            Version of Region Analysis databases, default is the
+                            newest
+      -v, --version         Version of Region_Analysis package
 
 Output:
 
@@ -85,7 +106,7 @@ The annotations features:
 
 Testing with examples:
 
-::
+.. code:: bash
 
     region_analysis.py -i example/test_without_header.bed -g mm10 -d ensembl
     region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r
@@ -98,7 +119,7 @@ could be downloaded from databases folder of the repo. Now seven genomes
 are supported by Region Analysis, they are: **equCab2, hg19, mm9, mm10,
 panTro4, rheMac2, and rn4**.
 
-::
+.. code:: bash
 
     usage: region_analysis_db.py [-h] {list,install,remove} ...
 
@@ -114,20 +135,29 @@ panTro4, rheMac2, and rn4**.
         install             Install genome from tar.gz package file
         remove              Remove genome from database
 
-For install:
+To install new genome:
 
-::
+.. code:: bash
 
-    usage: region_analysis_db.py install [-h] pkg
+    usage: region_analysis_db.py install [-h] [-y] pkg
 
     positional arguments:
       pkg         Package file(.tar.gz) to install
 
-For remove:
+    optional arguments:
+      -h, --help  show this help message and exit
+      -y, --yes   Say yes to all prompted questions
 
-::
+To remove installed genome:
 
-    usage: region_analysis_db.py remove [-h] gn
+.. code:: bash
+
+    usage: region_analysis_db.py remove [-h] [-y] gn
 
     positional arguments:
       gn          Name of genome to be removed(e.g. hg19)
+
+    optional arguments:
+      -h, --help  show this help message and exit
+      -y, --yes   Say yes to all prompted questions
+
