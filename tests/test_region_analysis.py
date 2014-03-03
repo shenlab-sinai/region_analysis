@@ -2,6 +2,7 @@ import unittest
 import subprocess
 import os
 import regionanalysis
+import string
 
 class TestRA(unittest.TestCase):
 
@@ -48,7 +49,7 @@ class TestRA(unittest.TestCase):
     def test_exceptions(self):
         # in subprocess.Popen, shell=True, executable="bash" were used, because in UBUNTU, /bin/sh is not bash!
         # null input
-        null_msg = "Please assign proper input file!\n"
+        null_msg = "usage: region_analysis.py [-h] [-i INPUT] [-d DATABASE] [-r] [-g GENOME]\n                          [-rv RAVER] [-v]\nregion_analysis.py: error: Please assign proper input file!\n--help will show the help information.\n"
         cmds = ["region_analysis.py"]
         p = subprocess.Popen(
             cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
@@ -72,7 +73,7 @@ class TestRA(unittest.TestCase):
             stdout, stderr = p.communicate()
             print(stdout)
             print(stderr)
-            self.assertEqual(msgs[i], stderr)
+            self.assertEqual(msgs[i], string.strip(stderr))
             del p, stdout, stderr
 
 
