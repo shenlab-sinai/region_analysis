@@ -40,20 +40,24 @@ def getDis2TSS(anno_db, cur_input, col_no_input):
         Pos = "Genebody"
     if anno_db == "ensembl":  # output is gid
         cur_output = [
-            cur_input[col_no_input + 3], cur_input[col_no_input +
-                                                   5], cur_input[
-                col_no_input + 6],
-            cur_input[col_no_input + 10], cur_input[col_no_input +
-                                                    11], Pos, str(Dis2TSS),
-            cur_input[col_no_input + 9], cur_input[col_no_input + 4]]
+            cur_input[col_no_input + 3],
+            cur_input[col_no_input + 5],
+            cur_input[col_no_input + 6],
+            cur_input[col_no_input + 10],
+            cur_input[col_no_input + 11],
+            Pos, str(Dis2TSS),
+            cur_input[col_no_input + 9],
+            cur_input[col_no_input + 4]]
     else:  # output is gene symbol
         cur_output = [
-            cur_input[col_no_input + 4], cur_input[col_no_input +
-                                                   5], cur_input[
-                col_no_input + 6],
-            cur_input[col_no_input + 10], cur_input[col_no_input +
-                                                    11], Pos, str(Dis2TSS),
-            cur_input[col_no_input + 9], cur_input[col_no_input + 4]]
+            cur_input[col_no_input + 4],
+            cur_input[col_no_input + 5],
+            cur_input[col_no_input + 6],
+            cur_input[col_no_input + 10],
+            cur_input[col_no_input + 11],
+            Pos, str(Dis2TSS),
+            cur_input[col_no_input + 9],
+            cur_input[col_no_input + 4]]
     return (cur_output, Dis2TSS, Dis2TES)
 
 
