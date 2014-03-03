@@ -49,13 +49,17 @@ class TestRA(unittest.TestCase):
     def test_exceptions(self):
         # in subprocess.Popen, shell=True, executable="bash" were used, because in UBUNTU, /bin/sh is not bash!
         # null input
-        null_msg = "usage: region_analysis.py [-h] [-i INPUT] [-d DATABASE] [-r] [-g GENOME]\n                          [-rv RAVER] [-v]\nregion_analysis.py: error: Please assign proper input file!\n--help will show the help information.\n"
+        null_msg = "Please assign proper input file!"
         cmds = ["region_analysis.py"]
         p = subprocess.Popen(
             cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             bufsize=1, universal_newlines=True, shell=False)
         stdout, stderr = p.communicate()
-        self.assertEqual(null_msg, stderr)
+        # split stderr output into list
+        stderr_list = string.split(stderr, sep="\n")
+        # check if the expected error message is in the stderr output
+        is_exception = any([(null_msg in y) for y in stderr_list])
+        self.assertEqual(is_exception, True)
         del p, stdout, stderr
         # try different input files
         genomes = ["dumb", "mm10", "mm10"]
@@ -71,8 +75,6 @@ class TestRA(unittest.TestCase):
                 cmds, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 bufsize=1, universal_newlines=True, shell=False)
             stdout, stderr = p.communicate()
-            print(stdout)
-            print(stderr)
             self.assertEqual(msgs[i], string.strip(stderr))
             del p, stdout, stderr
 
