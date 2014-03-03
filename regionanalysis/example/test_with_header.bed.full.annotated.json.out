@@ -69,7 +69,7 @@
         ".", 
         "NA", 
         "NA", 
-        "Genedesert", 
+        "Genedeserts", 
         "NA", 
         "No_anno", 
         "NA"
@@ -81,7 +81,7 @@
       ".", 
       "NA", 
       "NA", 
-      "Genedesert", 
+      "Genedeserts", 
       "NA", 
       "No_anno", 
       "NA"
@@ -259,7 +259,7 @@
         "+", 
         "122707489", 
         "122714632", 
-        "genebody", 
+        "Genebody", 
         "6389", 
         "protein_coding", 
         "Nanog"
@@ -270,7 +270,7 @@
         "+", 
         "122707568", 
         "122714633", 
-        "genebody", 
+        "Genebody", 
         "6310", 
         "protein_coding", 
         "Nanog"
@@ -281,7 +281,7 @@
         "+", 
         "122707565", 
         "122714632", 
-        "genebody", 
+        "Genebody", 
         "6313", 
         "protein_coding", 
         "Nanog"
@@ -293,7 +293,7 @@
       "+", 
       "122707568", 
       "122714633", 
-      "genebody", 
+      "Genebody", 
       "6310", 
       "protein_coding", 
       "Nanog"
@@ -312,7 +312,7 @@
         ".", 
         "NA", 
         "NA", 
-        "Otherintergenic", 
+        "OtherIntergenic", 
         "NA", 
         "No_anno", 
         "NA"
@@ -324,7 +324,7 @@
       ".", 
       "NA", 
       "NA", 
-      "Otherintergenic", 
+      "OtherIntergenic", 
       "NA", 
       "No_anno", 
       "NA"
