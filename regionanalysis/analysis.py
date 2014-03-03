@@ -36,7 +36,7 @@ def getDis2TSS(anno_db, cur_input, col_no_input):
     elif abs(Dis2TSS) <= 3000:
         Pos = "Promoter3k"
     else:
-        Pos = "genebody"
+        Pos = "Genebody"
     if anno_db == "ensembl":  # output is gid
         cur_output = [
             cur_input[col_no_input+3], cur_input[col_no_input+5], cur_input[col_no_input+6],
@@ -64,7 +64,7 @@ def getBestHit(anno_db, col_no_input, GB_entry, gd_entry, st_entry, pc_entry):
                 best_hit = cur_output
             formatted.append(cur_output)
     if gd_entry != "0":
-        cur_output = ["NA", "NA", ".", "NA", "NA", "Genedesert", "NA", "No_anno", "NA"]
+        cur_output = ["NA", "NA", ".", "NA", "NA", "Genedeserts", "NA", "No_anno", "NA"]
         if (best_hit is None):
             best_hit = cur_output
         formatted.append(cur_output)
@@ -81,7 +81,7 @@ def getBestHit(anno_db, col_no_input, GB_entry, gd_entry, st_entry, pc_entry):
         formatted.append(cur_output)
     if best_hit is None:
         cur_output = ["NA", "NA", ".", "NA", "NA",
-                      "Otherintergenic", "NA", "No_anno", "NA"]
+                      "OtherIntergenic", "NA", "No_anno", "NA"]
         best_hit = cur_output
         formatted.append(cur_output)
     return (formatted, best_hit)
