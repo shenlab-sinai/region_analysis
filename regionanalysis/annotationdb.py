@@ -28,7 +28,7 @@ def getAllPath(module_dir):
         environ_path = expandOsPath(os.environ.get("RA_DB_PATH"))
     except:
         environ_path = None
-    if environ_path != None:
+    if environ_path is not None:
         search_path.extend(glob.glob(os.path.join(environ_path, "*/")))
     home_dir = expandOsPath("~/.config/regionanalysis/")
     if os.path.isdir(home_dir):
@@ -42,7 +42,7 @@ def getInstallPath(module_dir):
         environ_path = expandOsPath(os.environ.get("RA_DB_PATH"))
     except:
         environ_path = None
-    if environ_path != None:
+    if environ_path is not None:
         return environ_path
     try:
         home_dir = expandOsPath("~/.config/regionanalysis/")

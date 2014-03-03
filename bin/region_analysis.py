@@ -32,7 +32,7 @@ def main():
     opt_parser.add_argument('-v', '--version', action='store_true',
                             help='Version of Region_Analysis package')
     options = opt_parser.parse_args()
-    if options.version == True:
+    if options.version:
         sys.stdout.write("Region_Analysis Version: %s\n" %
                          regionanalysis.packageinfo.__version__)
         opt_parser.print_help()
@@ -68,7 +68,7 @@ def main():
     input_filtered = [
         line for line in in_f if not line.lstrip().startswith("#")]
     # if there is header, store it and remove it from the query BED.
-    if rhead == True:
+    if rhead:
         headlineL = input_filtered[0].strip().split("\t")
         del input_filtered[0]
     # add index column to the bed lines
@@ -134,7 +134,7 @@ def main():
     output_file = file(input_file_name + ".full.annotated", "w")
     output_file_json = file(input_file_name + ".full.annotated.json", "w")
     # Output the header.
-    if rhead == True:
+    if rhead:
         output_file.write("\t".join(
             headlineL + ["GName", "TName", "Strand", "TSS", "TES", "Feature", "D2TSS", "Biotype", "GeneSymbol"]) + "\n")
         output_file_best.write("\t".join(

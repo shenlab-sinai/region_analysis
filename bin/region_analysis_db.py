@@ -15,7 +15,7 @@ def read_gnlist(h_sp, installed_db, mode):
        Args:
          h_sp: vector of header.
          installed_db: list of dicts with genome information.
-       Returns: (header split vector, hash table of installed genomes, 
+       Returns: (header split vector, hash table of installed genomes,
                  vector of column widths)
     """
     v_cw = map(len, h_sp)  # column widths initialize to header widths.
@@ -108,7 +108,7 @@ def install(args):
         if genome_info["genome"] == cur_genome_info["genome"]:
             sys.stderr.write("%s, RAver %s already installed at %s!\n" %
                              (genome_info["genome"], genome_info["version"], genome_info["path"]))
-            if yestoall == True:
+            if yestoall:
                 sys.stderr.write("The installed database will be removed!\n")
                 shutil.rmtree(genome_info["path"])
             else:
