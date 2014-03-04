@@ -1,6 +1,6 @@
 # example bed
-# ./region_analysis.py -i example/test_without_header.bed -g mm10 -d ensembl
-# ./region_analysis.py -i example/test_without_header.bed -g mm10 -d refseq
+# region_analysis.py -i example/test_without_header.bed -g test -d ensembl
+# region_analysis.py -i example/test_without_header.bed -g test -d refseq
 chr1	3000100	3000200
 chr1	102000	102200
 chr1	7190000	7190200

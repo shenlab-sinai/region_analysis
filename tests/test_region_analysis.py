@@ -17,7 +17,7 @@ class TestRA(unittest.TestCase):
     def test_with_header(self):
         input_example = os.path.join(self.example_dir, "test_with_header.bed")
         cmds = ["region_analysis.py", "-d", "ensembl",
-                "-g", "mm10", "-i", input_example, "-r"]
+                "-g", "test", "-i", input_example, "-r"]
         p = subprocess.Popen(cmds, stdout=subprocess.PIPE, bufsize=1)
         stdout, stderr = p.communicate()
         test_output = open(input_example + ".annotated").read()
@@ -34,7 +34,7 @@ class TestRA(unittest.TestCase):
         input_example = os.path.join(
             self.example_dir, "test_without_header.bed")
         cmds = ["region_analysis.py", "-d", "ensembl",
-                "-g", "mm10", "-i", input_example]
+                "-g", "test", "-i", input_example]
         p = subprocess.Popen(cmds, stdout=subprocess.PIPE, bufsize=1)
         stdout, stderr = p.communicate()
         test_output = open(input_example + ".annotated").read()
@@ -63,7 +63,7 @@ class TestRA(unittest.TestCase):
         self.assertEqual(is_exception, True)
         del p, stdout, stderr
         # try different input files
-        genomes = ["dumb", "mm10", "mm10"]
+        genomes = ["dumb", "test", "test"]
         msgs = ["dumb not in the genome database!",
                 "Error in input file! Please check the format!",
                 "Error in input file! Please check the format!"]
