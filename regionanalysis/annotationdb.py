@@ -46,6 +46,8 @@ def getInstallPath(module_dir):
         return environ_path
     try:
         home_dir = expandOsPath("~/.config/regionanalysis/")
+        if not os.path.isdir(home_dir):
+            os.makedirs(home_dir)
         return home_dir
     except:
         return os.path.join(module_dir, "database/")
