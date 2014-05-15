@@ -1,6 +1,12 @@
 # region_analysis
 
-Region_analysis is a package derived and extended from region_analysis.pl in diffReps package. It is a utility to annotate the genomic intervals like the peak list of ChIP-seq or other interval lists from the genomic research. Now it supports human (hg19), mouse (mm9, mm10), rat (rn4), chimpanzee (panTro4), rhesus macaque (rheMac2), and horse (equCab2). New genomes will be added. Any question or suggestion is welcome! If you want new genome to be added, please open an issue.
+Region_analysis is a package derived and extended from region_analysis.pl in diffReps package.
+It is a utility to annotate the genomic intervals like the peak list of ChIP-seq
+or other interval lists from the genomic research. New genomes will be added.
+Any question or suggestion is welcome! If you want new genome to be added, please
+ open an issue.
+
+Now the annotation databases could be downloaded from our [GDrive: https://drive.google.com/folderview?id=0B1PVLadG_dCKaHJobVpDcTluazg&usp=sharing](https://drive.google.com/folderview?id=0B1PVLadG_dCKaHJobVpDcTluazg&usp=sharing).
 
 ## Dependency:
 
@@ -29,6 +35,7 @@ After the installation, for testing:
 ```
 
 **(Not recommanded, because RA is under rapidly updating these days)**
+
 If easy_install or pip is available, then:
 
 ```
@@ -75,7 +82,7 @@ Output:
 *  -.annotated: the one-to-one output list, only the annotation entry whose TSS is nearest to the inquiry interval kept.
 *  -.full.annotated: all hit entries are kept. In some cases,one interval may overlap with several features, e.g., at ProximalPromter in transcript A, at same time at Promoter3k feature in transcript B.
 *  -.full.annotated.json: the json format output of -.full.annotated.
-  
+
 The annotations features:
 
 * ProximalPromoter: 	+/- 250bp of TSS
@@ -97,7 +104,7 @@ region_analysis.py -i example/test_with_header.bed -g mm10 -d ensembl -r
 Utility to manage the databases used by Region Analysis.
 The databases could be downloaded from databases folder of the repo.
 Now seven genomes are supported by Region Analysis, they are:
-**equCab2, hg19, mm9, mm10, panTro4, rheMac2, and rn4**. 
+**equCab2, hg19, mm9, mm10, panTro4, rheMac2, and rn4**.
 
 ```bash
 usage: region_analysis_db.py [-h] {list,install,remove} ...
