@@ -66,7 +66,7 @@ def main():
     in_f = file(input_file_name)
     # filter the comment lines
     input_filtered = [
-        line for line in in_f if not line.lstrip().startswith("#")]
+        line for line in in_f if not (line.lstrip().startswith("#") or len(line.strip())==0)]
     # if there is header, store it and remove it from the query BED.
     if rhead:
         headlineL = input_filtered[0].strip().split("\t")
