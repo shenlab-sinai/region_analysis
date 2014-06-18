@@ -1,5 +1,6 @@
 include README.rst CHANGES.txt
 include regionanalysis/database/*
+include regionanalysis/database/*/*
 include regionanalysis/example/*.bed
 include regionanalysis/example/*.out
 include regionanalysis/exceptions/*.bed
