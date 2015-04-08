@@ -8,6 +8,10 @@ Any question or suggestion is welcome! If you want new genome to be added, pleas
 
 Now the annotation databases could be downloaded from our [GDrive: https://drive.google.com/folderview?id=0B1PVLadG_dCKaHJobVpDcTluazg&usp=sharing](https://drive.google.com/folderview?id=0B1PVLadG_dCKaHJobVpDcTluazg&usp=sharing).
 
+## Build your own genome files
+
+We open-sourced the pipeline - [ngsplotdb](https://github.com/shenlab-sinai/ngsplotdb) that is used to build genome files for both ngs.plot and region_analysis. 
+
 ## Dependency:
 
   bedtools: [https://code.google.com/p/bedtools/](https://code.google.com/p/bedtools/)
