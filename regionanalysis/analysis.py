@@ -16,7 +16,7 @@ def getDis2TSS(anno_db, cur_input, col_no_input):
     """
     # calculate TSS and TES based on strands.
     # if strand is not "-" then it will be treated as "+".
-    if cur_input[col_no_input + 5] != "-":
+    if cur_input[col_no_input + 6] != "-":
         TSS = int(cur_input[col_no_input + 10])
         TES = int(cur_input[col_no_input + 11])
         cur_input[col_no_input + 1] = str(int(TSS))
