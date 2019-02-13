@@ -49,7 +49,7 @@ If easy_install or pip is available, then:
   or:
 
 ```
-  > pip isntall regionanalysis
+  > pip install regionanalysis
 ```
 
 ## Howtos
